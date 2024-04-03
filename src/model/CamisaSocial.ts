@@ -4,8 +4,8 @@ export class CamisaSocial extends Produto{
     
     private _material: string;
 
-	constructor(id: number, nome: string, tipo: number, preco: number, material: string) {
-        super(id, nome, tipo, preco) 
+	constructor(id: number, nome: string, tamanho: string, tipo: number, preco: number, material: string) {
+        super(id, nome, tipo, preco, tamanho) 
 		this._material = material;
 	}
 

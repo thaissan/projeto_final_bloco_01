@@ -4,8 +4,8 @@ export class CamisetaCasual extends Produto{
     
     private _estampa: string;
 
-	constructor(id: number, nome: string, tipo: number, preco: number, estampa: string) {
-        super(id, nome, tipo, preco)
+	constructor(id: number, nome: string, tamanho: string, tipo: number, preco: number, estampa: string) {
+        super(id, nome, tipo, preco, tamanho)
 		this._estampa = estampa;
 	}
 

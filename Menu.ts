@@ -3,29 +3,35 @@ import readlinesync = require("readline-sync");
 import { colors } from './src/util/Colors';
 import { CamisaSocial } from "./src/model/CamisaSocial";
 import { CamisetaCasual } from "./src/model/CamisetaCasual";
+import { Calca } from "./src/model/Calca";
 import { ProdutoController } from "./src/controller/ProdutoController";
 
 
 export function main() {
 
     let opcao, id, tipo, preco: number;
-    let nome, estampa, material: string;
-    let tipoProduto = ['Camisa Social', 'Camiseta Casual'];
+    let nome, tamanho, estampa, material, tipoDeCorte : string;
+    let tipoProduto = ['Camisa Social', 'Camiseta Casual', 'Calca'];
 
     const produtoController: ProdutoController = new ProdutoController();
 
     produtoController.cadastrar(new CamisaSocial(produtoController.gerarId(),
-    "Camisa", 1, 50.00, "Algodão"));
+    "Camisa","P", 1, 50.00, "Algodão"));
 
     produtoController.cadastrar(new CamisetaCasual(produtoController.gerarId(),
-    "Camiseta", 2, 50.00, "Listrada"));
+    "Camiseta","M", 2, 50.00, "Listrada"));
+
+    produtoController.cadastrar(new Calca(produtoController.gerarId(),
+    "Calca","M", 3, 100.00, "Skinny"));
+
+
 
     while (true) {
 
-        console.log(colors.bg.black, colors.fg.yellow,
+        console.log(colors.bg.black, colors.fg.magenta,
             "*****************************************************");
         console.log("                                                     ");
-        console.log("   C&C - Camisetas e Camisas para o seu dia a dia!   ");
+        console.log("        Work Fashion - Trabalhe com estilo!          ");
         console.log("                                                     ");
         console.log("*****************************************************");
         console.log("                                                     ");
@@ -44,8 +50,8 @@ export function main() {
         opcao = readlinesync.questionInt("");
 
         if (opcao == 0) {
-            console.log(colors.fg.greenstrong,
-                "\nC&C - Do Casual ao Chique!");
+            console.log(colors.fg.magentastrong,
+                "\nWork Fashion - Trabalhe com estilo!");
             sobre();
             console.log(colors.reset, "");
             process.exit(0);
@@ -58,6 +64,8 @@ export function main() {
 
                 nome = readlinesync.question("Digite o Nome do Produto: ");
 
+                tamanho = readlinesync.question("Digite o Tamanho do Produto: ");
+
                 tipo = readlinesync.keyInSelect(tipoProduto, "", { cancel: false }) + 1;
 
                 preco = readlinesync.questionFloat("Digite o preco: ");
@@ -66,12 +74,18 @@ export function main() {
                     case 1:
                         material = readlinesync.question("Digite o Material da Camisa: ");
                         produtoController.cadastrar(new CamisaSocial(produtoController.gerarId(),
-                            nome, tipo, preco, material));
+                            nome, tamanho, tipo, preco, material));
                         break;
                     case 2:
                         estampa = readlinesync.question("Digite a Estampa da Camiseta: ");
                         produtoController.cadastrar(new CamisetaCasual(produtoController.gerarId(),
-                            nome, tipo, preco, estampa));
+                            nome, tamanho, tipo, preco, estampa));
+                        break;
+                    
+                    case 3:
+                        tipoDeCorte = readlinesync.question("Digite o Tipo de Corte da Calca: ");
+                        produtoController.cadastrar(new Calca(produtoController.gerarId(),
+                            nome, tamanho, tipo, preco,tipoDeCorte));
                         break;
                 }
 
@@ -106,21 +120,29 @@ export function main() {
 
                         nome = readlinesync.question("Digite o Nome do Produto: ");
 
+                        tamanho = readlinesync.question("Digite o Tamanho do Produto: ");
+
                         tipo = produto.tipo;
         
                         preco = readlinesync.questionFloat("Digite o preco: ");
         
                         switch (tipo) {
-                            case 1:
-                        material = readlinesync.question("Digite o Material da Camisa: ");
-                        produtoController.cadastrar(new CamisaSocial(produtoController.gerarId(),
-                            nome, tipo, preco, material));
+                        case 1:
+                            material = readlinesync.question("Digite o Material da Camisa: ");
+                            produtoController.cadastrar(new CamisaSocial(produtoController.gerarId(),
+                            nome, tamanho, tipo, preco, material));
                         break;
-                            case 2:
-                        estampa = readlinesync.question("Digite a Estampa da Camiseta: ");
-                        produtoController.cadastrar(new CamisetaCasual(produtoController.gerarId(),
-                            nome, tipo, preco, estampa));
+                        case 2:
+                             estampa = readlinesync.question("Digite a Estampa da Camiseta: ");
+                             produtoController.cadastrar(new CamisetaCasual(produtoController.gerarId(),
+                             nome, tamanho, tipo, preco, estampa));
                                 break;
+
+                        case 3:
+                             tipoDeCorte = readlinesync.question("Digite o Tipo de Corte da Calca: ");
+                             produtoController.cadastrar(new Calca(produtoController.gerarId(),
+                            nome, tamanho, tipo, preco, tipoDeCorte));
+                        break;        
                         }
 
                     }else

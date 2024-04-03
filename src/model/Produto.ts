@@ -4,12 +4,15 @@
     private _nome: string;
     private _tipo: number;
     private _preco: number;
+    private _tamanho: string;
 
-    constructor(id: number, nome: string, tipo: number, preco: number) {
+
+    constructor(id: number, nome: string, tipo: number, preco: number, tamanho: string) {
         this._id = id;
         this._nome = nome;
         this._tipo = tipo;
         this._preco = preco;
+        this._tamanho = tamanho;
     }
 
 
@@ -45,6 +48,9 @@
         return this._preco;
     }
 
+    public get tamanho(): string {
+        return this._tamanho;
+    }
     /**
      * Setter id
      * @param {number} value
@@ -77,6 +83,10 @@
         this._preco = value;
     }
 
+    public set tamanho(value: string) {
+        this._tamanho = value;
+    }
+
     public visualizar(): void {
 
         let tipo: string = "";
@@ -88,6 +98,10 @@
             case 2:
                 tipo = "Camiseta Casual"
                 break;
+            case 3:
+                tipo = "Calca"
+                break;
+
         }
 
         console.log("****************************************************")
@@ -97,5 +111,6 @@
         console.log(`Nome do produto: ${this._nome}`)
         console.log(`Tipo do produto: ${tipo}`)
         console.log(`Preço do produto: ${this._preco}`)
+        console.log(`Tamanho do produto: ${this._tamanho}`)   
     }
 }
