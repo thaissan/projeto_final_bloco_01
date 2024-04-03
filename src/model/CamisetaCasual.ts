@@ -1,6 +1,6 @@
 import { Produto } from "./Produto";
 
-export class Medicamento extends Produto{
+export class CamisetaCasual extends Produto{
     
     private _estampa: string;
 

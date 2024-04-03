@@ -1,6 +1,6 @@
 import { Produto } from "./Produto";
 
-export class Cosmetico extends Produto{
+export class CamisaSocial extends Produto{
     
     private _material: string;
 
